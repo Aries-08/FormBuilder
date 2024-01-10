@@ -1,0 +1,47 @@
+<div>
+    <div>
+      <label for="newElementName">Element Name:</label>
+      <input type="text" id="newElementName" [(ngModel)]="newElementName" placeholder="Enter Element Name">
+    </div>
+  
+    <div>
+      <label for="newElementType">Element Type:</label>
+      <select id="newElementType" [(ngModel)]="newElementType">
+        <option value="" disabled selected>Select an option</option>
+        <option *ngFor="let type of elementTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+  
+    <div>
+      <label for="newIsRequired">Required:</label>
+      <select id="newIsRequired" [(ngModel)]="newIsRequired">
+        <option value="" disabled selected>Select an option</option>
+        <option *ngFor="let option of isRequiredOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+  
+    <div>
+      <button type="button" (click)="addElement(newElementName, newElementType, newIsRequired)">Add Element</button>
+  </div>
+  
+  <div>
+    <h2>Form Elements Table</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Serial Number</th>
+          <th>Element Name</th>
+          <th>Element Type</th>
+          <th>Required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of formElements">
+          <td>{{ element.serialNumber }}</td>
+          <td>{{ element.elementName }}</td>
+          <td>{{ element.elementType }}</td>
+          <td>{{ element.isRequired }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
