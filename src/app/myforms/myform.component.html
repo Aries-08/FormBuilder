@@ -1,0 +1,70 @@
+<div>
+    <div>
+      <label for="newElementName">Element Name:</label>
+      <input type="text" id="newElementName" [(ngModel)]="newElementName" placeholder="Enter Element Name">
+    </div>
+
+    <div>
+      <label for="newElementType">Element Type:</label>
+      <select id="newElementType" [(ngModel)]="newElementType">
+        <option value="" disabled selected>Select an option</option>
+        <option *ngFor="let type of elementTypes" [value]="type">{{ type }}</option>
+      </select>
+    </div>
+
+    <div *ngIf="newElementType === 'Select'">
+      <label for="newOptions">Options:</label>
+      <div class="options-container">
+        <input type="text" id="newOptions" [(ngModel)]="newOption" placeholder="Enter Option">
+        <button type="button" (click)="addOption()">+</button>
+      </div>
+      <ul>
+        <li *ngFor="let option of newOptions">
+          {{ option }}
+          <button type="button" (click)="removeOption(option)">-</button>
+        </li>
+      </ul>
+    </div>
+  
+    <div>
+      <label for="newIsRequired">Required:</label>
+      <select id="newIsRequired" [(ngModel)]="newIsRequired">
+        <option value="" disabled selected>Select an option</option>
+        <option *ngFor="let option of isRequiredOptions" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+  
+    <div>
+      <button type="button" [disabled]="!areFieldsFilled()" (click)="addElement(newElementName, newElementType, newIsRequired)">Add Element</button>
+      <button type="button" (click)="generateForm()">Generate HTML</button>
+      <button type="button" (click)="resetComp()">Reset</button>
+    </div>
+
+    <div *ngIf="generatedHtmlCode">
+      <h2 class="htmlcode">Generated HTML Code</h2>
+      <button class="copy-button" type="button" (click)="copyCode()">Copy Code</button>
+      <textarea [(ngModel)]="generatedHtmlCode" readonly></textarea>
+    </div>
+  
+    <div>
+      <h2>Form Elements Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Serial Number</th>
+            <th>Element Name</th>
+            <th>Element Type</th>
+            <th>Required</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let element of formElements">
+            <td>{{ element.serialNumber }}</td>
+            <td>{{ element.elementName }}</td>
+            <td>{{ element.elementType }}</td>
+            <td>{{ element.isRequired }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

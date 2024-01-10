@@ -1,0 +1,86 @@
+div {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+  
+label {
+  display: block;
+}
+
+
+/* Add element, Generate HTML, Reset buttons */
+button {
+  padding: 7px;
+  background-color: #2db300;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #1a6600;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+
+/* for select options */
+.options-container {
+  display: flex;
+  align-items: center;
+}
+
+.options-container input {
+  margin-right: 10px; 
+}
+
+ul li button {
+  margin-left: 10px;
+  background-color: #CCCFCD;
+  color: #000;
+}
+
+
+/* for generated HTML code */
+.htmlcode {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 100%;
+  background-color: #EEEFEB;
+  border-color: #B6B7B4;
+  color: #ACAFAD;
+}
+
+.copy-button {
+  background-color: #2db300;
+  margin-left: 50px;
+}
+
+
+/* field table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 2px solid;
+  border-color: #B6B7B4;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #EEEFEB;
+}
+  
