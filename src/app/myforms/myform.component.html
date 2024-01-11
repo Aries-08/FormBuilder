@@ -55,14 +55,20 @@
             <th>Element Name</th>
             <th>Element Type</th>
             <th>Required</th>
+            <th>Delete Row</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let element of formElements">
+          <tr *ngFor="let element of formElements; let i = index">
             <td>{{ element.serialNumber }}</td>
             <td>{{ element.elementName }}</td>
             <td>{{ element.elementType }}</td>
             <td>{{ element.isRequired }}</td>
+            <td>
+              <button type="=button" (click)="deleteElement(i)">
+                {{ deleteIcon }}
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

@@ -16,6 +16,7 @@ export class MyformComponent {
   newOption: string = '';
   newOptions: string[] = [];
   generatedHtmlCode: string = '';
+  deleteIcon: string = '-';
 
   addOption(): void {
     if (this.newOption.trim() !== '') {
@@ -68,29 +69,47 @@ export class MyformComponent {
   }
 
   generateForm() {
-    this.generatedHtmlCode = '<form class="PreForm">';
+    this.generatedHtmlCode = '<form>';
     for (const element of this.formElements) {
-      this.generatedHtmlCode += `<div class="PreDiv"><label for="${element.elementName}">${element.elementName}:</label>`;
+      this.generatedHtmlCode += `<label for="${element.elementName}">${element.elementName}:</label>`;
+      
       if (element.elementType === 'Select') {
-        this.generatedHtmlCode += `<select name="${element.elementName}" id="${element.elementName}">`;
+        this.generatedHtmlCode += `<select name="${element.elementName}"`;
+        this.generatedHtmlCode += `>`;
+        
         for (const option of element.options) {
           this.generatedHtmlCode += `<option value="${option}">${option}</option>`;
         }
+        
         this.generatedHtmlCode += `</select>`;
       } else {
-        this.generatedHtmlCode += `<input name="${element.elementName}" id="${element.elementName}" type="${element.elementType}"`;
-        if (element.pattern) {
-          this.generatedHtmlCode += ` pattern="${element.pattern}"`;
-        }
+        this.generatedHtmlCode += `<input name="${element.elementName}"`;
+        
         if (element.required) {
+          this.generatedHtmlCode += ` required`;
+        }
+        
+        if (element.elementType === 'Text') {
+          this.generatedHtmlCode += ` type="text" pattern="^[a-zA-Z]+$"`;
+        } 
+        else if (element.elementType === 'Email') {
+          this.generatedHtmlCode += ` type="email"`;
+        } 
+        else if (element.elementType === 'Password') {
+          this.generatedHtmlCode += ` type="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{10,}$"`;
+        } 
+        else if (element.elementType === 'Date') {
+          this.generatedHtmlCode += ` type="text" pattern="\\d{4}-\\d{2}-\\d{2}"`;
+        }
+
+        if (element.isRequired === 'Yes') {
           this.generatedHtmlCode += ` required`;
         }
         this.generatedHtmlCode += `>`;
       }
-      this.generatedHtmlCode += `</div>`;
     }
-    this.generatedHtmlCode += `</form>`;  
-  }
+    this.generatedHtmlCode += `<input type="submit" value="Submit"/></form>`;
+  }  
 
   copyCode() {
     const textarea = document.createElement('textarea');
@@ -100,5 +119,9 @@ export class MyformComponent {
     document.execCommand('copy');
     document.body.removeChild(textarea);
   }  
+
+  deleteElement(index: number): void {
+    this.formElements.splice(index, 1);
+  }
   
 }

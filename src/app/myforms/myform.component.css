@@ -67,7 +67,7 @@ textarea {
 }
 
 
-/* field table */
+/* fields table */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -83,4 +83,8 @@ th, td {
 th {
   background-color: #EEEFEB;
 }
-  
+
+tr td button {
+  background-color: #CCCFCD;
+  color: #000;
+}
