@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormPreviewService } from '../form-preview.service';
 
 @Component({
   selector: 'app-myform',
@@ -17,6 +19,7 @@ export class MyformComponent {
   newOptions: string[] = [];
   generatedHtmlCode: string = '';
   deleteIcon: string = '-';
+  showForm: boolean = true;
 
   addOption(): void {
     if (this.newOption.trim() !== '') {
@@ -107,9 +110,10 @@ export class MyformComponent {
         }
         this.generatedHtmlCode += `>`;
       }
+      this.generatedHtmlCode += `<br>`;
     }
     this.generatedHtmlCode += `<input type="submit" value="Submit"/></form>`;
-  }  
+  }
 
   copyCode() {
     const textarea = document.createElement('textarea');
@@ -123,5 +127,19 @@ export class MyformComponent {
   deleteElement(index: number): void {
     this.formElements.splice(index, 1);
   }
-  
+
+  constructor(private router: Router) {};
+
+  // constructor(private formPreviewService : FormPreviewService) {};
+
+  submitForm() {
+    this.showForm = false;
+  }
+
+  submitAndNavigate(): void {
+    this.submitForm();
+    this.router.navigate(['/preview']);
+    // this.formPreviewService.setGeneratedHtmlCode(this.generatedHtmlCode);
+  }
+
 }

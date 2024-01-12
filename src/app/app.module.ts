@@ -7,11 +7,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MyformComponent } from './myforms/myform.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormPreviewComponent } from './form-preview/form-preview.component';
+import { FormPreviewResolver } from './form-preview-resolver.service';
+import { FormPreviewService } from './form-preview.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyformComponent
+    MyformComponent,
+    FormPreviewComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +25,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    FormPreviewResolver,
+    FormPreviewService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

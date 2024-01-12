@@ -1,4 +1,5 @@
-<div>
+<div *ngIf="showForm">
+  <h1 class="main-heading">Build your form here :)</h1>
     <div>
       <label for="newElementName">Element Name:</label>
       <input type="text" id="newElementName" [(ngModel)]="newElementName" placeholder="Enter Element Name">
@@ -43,6 +44,7 @@
     <div *ngIf="generatedHtmlCode">
       <h2 class="htmlcode">Generated HTML Code</h2>
       <button class="copy-button" type="button" (click)="copyCode()">Copy Code</button>
+      <button class="submit-button" type="button" (click)="submitAndNavigate()">Submit Form</button>
       <textarea [(ngModel)]="generatedHtmlCode" readonly></textarea>
     </div>
   
